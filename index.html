@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My GTM Practice Site</title>
+     <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDQ7N6VV');</script>
+<!-- End Google Tag Manager -->
+</head>
+<body>
+     <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KDQ7N6VV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) --> 
 
+    <h1>GTM & GA4 Learning Lab</h1>
+    <p>Try tracking the elements below:</p>
+
+    <!-- A Button for Click Tracking -->
+    <button id="main-cta-button">Click Me!</button>
+
+    <!-- A Link for Outbound Tracking -->
+    <br><br>
+    <a href="https://www.google.com" id="outbound-link">Go to Google</a>
+
+    <!-- A Simple Form for Form Submission Tracking -->
+    <br><br>
+    <form id="practice-form">
+        <input type="text" placeholder="Enter your name">
+        <button type="submit">Submit Form</button>
+    </form>
+
+    <script>
+        // Custom Data Layer Push for practice
+        document.getElementById('main-cta-button').addEventListener('click', function() {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'cta_click',
+                'button_color': 'blue'
+            });
+        });
+    </script>
+</body>
+</html>
