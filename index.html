@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My GTM Practice Site</title>
-     <!-- Google Tag Manager -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxBag | Premium Custom Bags</title>
+    <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -11,37 +12,118 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-WTJFBG6F');</script>
 <!-- End Google Tag Manager -->
 </head>
-<body>
-    <!-- Google Tag Manager (noscript) -->
+<body style="font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6;">
+   <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTJFBG6F"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    <h1>GTM & GA4 Learning Lab</h1>
-    <p>Try tracking the elements below:</p>
+    <!-- Navigation -->
+    <nav style="background: #333; color: #fff; padding: 1rem; display: flex; justify-content: space-between;">
+        <strong>LuxBag</strong>
+        <div>
+            <a href="#" style="color: #fff; margin-left: 20px;">Home</a>
+            <a href="#blog" style="color: #fff; margin-left: 20px;">Our Craft (Blog)</a>
+        </div>
+    </nav>
 
-    <!-- A Button for Click Tracking -->
-    <button id="main-cta-button">Click Me!</button>
+    <!-- 1. Hero Banner (Practice: Promotion Tracking) -->
+    <section id="promo-banner" style="background: #f4f4f4; padding: 40px; text-align: center; border-bottom: 2px solid #ddd;">
+        <h2>Summer Collection 2026</h2>
+        <p>Get 20% off using code <strong>SUMMER20</strong></p>
+        <button id="banner-cta" data-promo-name="Summer Sale" style="background: #e67e22; color: white; border: none; padding: 10px 20px; cursor: pointer;">Shop the Sale</button>
+    </section>
 
-    <!-- A Link for Outbound Tracking -->
-    <br><br>
-    <a href="https://www.google.com" id="outbound-link">Go to Google</a>
+    <!-- 2. Product Grid (Practice: Ecommerce View Item/Select Item) -->
+    <main style="padding: 20px;">
+        <h3>Best Sellers</h3>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+            <div class="product-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+                <h4>Leather Executive Briefcase</h4>
+                <p>$250.00</p>
+                <button onclick="addToCart('P101', 'Leather Briefcase', 250)">Add to Cart</button>
+            </div>
+            <div class="product-card" style="border: 1px solid #ddd; padding: 15px; border-radius: 8px;">
+                <h4>Urban Explorer Backpack</h4>
+                <p>$120.00</p>
+                <button onclick="addToCart('P202', 'Explorer Backpack', 120)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
 
-    <!-- A Simple Form for Form Submission Tracking -->
-    <br><br>
-    <form id="practice-form">
-        <input type="text" placeholder="Enter your name">
-        <button type="submit">Submit Form</button>
-    </form>
+    <!-- 3. Lead Form (Practice: Form Submission & User Properties) -->
+    <section style="background: #eee; padding: 40px;">
+        <h3>Customize Your Bag</h3>
+        <form id="custom-bag-form">
+            <input type="text" id="user_name" placeholder="Name" required style="display:block; margin-bottom:10px;">
+            <select id="material" style="display:block; margin-bottom:10px;">
+                <option value="leather">Premium Leather</option>
+                <option value="canvas">Organic Canvas</option>
+                <option value="nylon">Recycled Nylon</option>
+            </select>
+            <button type="submit" style="background: #2c3e50; color: white; padding: 10px 20px;">Request Quote</button>
+        </form>
+        <div id="thank-you-msg" style="display:none; color: green; margin-top: 10px;">Request Sent! Check your email.</div>
+    </section>
+
+    <!-- 4. Blog & Video (Practice: Video Tracking & Scroll Depth) -->
+    <section id="blog" style="padding: 40px;">
+        <h3>How We Make Our Bags</h3>
+        <p>Watch the video below to see our hand-stitching process.</p>
+        <!-- Standard YouTube Embed -->
+        <iframe id="craft-video" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </section>
 
     <script>
-        // Custom Data Layer Push for practice
-        document.getElementById('main-cta-button').addEventListener('click', function() {
+        // PROFESSIONAL DATALAYER PUSHES
+
+        // A. Promo Click Tracking
+        document.getElementById('banner-cta').addEventListener('click', function() {
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                'event': 'cta_click',
-                'button_color': 'blue'
+                'event': 'select_promotion',
+                'ecommerce': {
+                    'promotion_id': 'SUMMER_2026',
+                    'promotion_name': 'Summer Sale',
+                    'location_id': 'homepage_banner'
+                }
             });
+            alert('Promo clicked! DataLayer push sent.');
+        });
+
+        // B. Ecommerce Add to Cart (Senior Level)
+        function addToCart(id, name, price) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'add_to_cart',
+                'ecommerce': {
+                    'currency': 'USD',
+                    'value': price,
+                    'items': [{
+                        'item_id': id,
+                        'item_name': name,
+                        'price': price,
+                        'quantity': 1
+                    }]
+                }
+            });
+            alert(name + ' added to cart!');
+        }
+
+        // C. Form Submission with User Data
+        document.getElementById('custom-bag-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const material = document.getElementById('material').value;
+            
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'generate_lead',
+                'form_id': 'custom_bag_inquiry',
+                'lead_type': material
+            });
+
+            document.getElementById('custom-bag-form').style.display = 'none';
+            document.getElementById('thank-you-msg').style.display = 'block';
         });
     </script>
 </body>
